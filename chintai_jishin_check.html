@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>賃貸の地震対策チェック診断</title>
+<meta name="description" content="賃貸住宅でできる地震対策を15問でチェック。回答に応じて優先して確認したい場所と対策ポイントを表示します。">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",sans-serif;background:#f5f7f8;color:#20262b;line-height:1.75}
+.container{max-width:760px;margin:auto;padding:20px}
+.hero,.card{background:#fff;border-radius:18px;padding:26px;margin:18px 0;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.hero{text-align:center;padding:38px 24px}.badge{display:inline-block;border-radius:999px;background:#eef3f5;padding:5px 12px;font-size:13px}
+h1{font-size:30px;line-height:1.35;margin:16px 0 12px}h2{font-size:23px;margin-top:0}h3{font-size:18px}
+.lead{font-size:17px;color:#59636b}.small{font-size:13px;color:#69737a}
+button{width:100%;border:0;border-radius:12px;padding:15px 18px;font-size:16px;font-weight:700;cursor:pointer;margin-top:10px;background:#20262b;color:white}
+button.secondary{background:#eef1f3;color:#20262b}button.answer{background:#fff;color:#20262b;border:1px solid #d8dde0;text-align:left}
+button.answer:hover{background:#f4f7f8}.progress{height:8px;background:#e9edef;border-radius:99px;overflow:hidden;margin:15px 0}.bar{height:100%;background:#20262b;width:0}
+.question{font-size:22px;font-weight:700;line-height:1.5;margin:20px 0}.qnum{font-size:14px;color:#657078}
+.hidden{display:none}.result-title{font-size:28px}.score{font-size:42px;font-weight:800;margin:4px 0}.priority{border-left:5px solid #20262b;padding:12px 15px;background:#f4f6f7;border-radius:8px;margin:10px 0}.tag{display:inline-block;padding:4px 9px;border-radius:999px;background:#eef1f3;margin:3px;font-size:13px}
+ul{padding-left:22px}.notice{background:#fff8e7;border-radius:12px;padding:14px;margin:16px 0;font-size:14px}
+footer{padding:30px 10px 50px;color:#68727a;font-size:12px}
+</style>
+</head>
+<body>
+<div class="container">
+
+<section class="hero" id="start">
+<span class="badge">無料・約3〜5分</span>
+<h1>賃貸の地震対策<br>自宅チェック診断</h1>
+<p class="lead">15問に答えるだけで、あなたの家で「まず確認したい場所」を整理します。</p>
+<button onclick="startQuiz()">無料で診断を始める</button>
+<p class="small">※この診断は一般的な防災情報をもとに、対策を検討する優先順位を整理するものです。建物・家具等の安全性を判定・保証するものではありません。</p>
+</section>
+
+<section class="card hidden" id="quiz">
+<div class="qnum" id="qnum"></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<div class="question" id="question"></div>
+<div id="answers"></div>
+<button class="secondary" onclick="restartQuiz()">最初からやり直す</button>
+</section>
+
+<section class="card hidden" id="result">
+<span class="badge">診断結果</span>
+<h2 class="result-title" id="resultTitle"></h2>
+<div class="score" id="score"></div>
+<p id="resultIntro"></p>
+<div id="priorities"></div>
+<div class="notice">この結果は「危険度」の断定ではなく、回答内容から<strong>先に確認・検討したい項目</strong>を整理したものです。</div>
+<button onclick="document.getElementById('article').scrollIntoView({behavior:'smooth'})">結果に対応する解説を見る</button>
+<button class="secondary" onclick="restartQuiz()">もう一度診断する</button>
+</section>
+
+<section class="card hidden" id="article">
+<span class="badge">WEB解説</span>
+<h2>賃貸でもできる地震対策</h2>
+<p>地震対策は「防災用品を買う」だけではありません。まず、自宅の中で家具や物が倒れたり落ちたりした場合に、けがや避難の妨げにつながらないかを確認することが大切です。</p>
+
+<h3>1. 寝室を最初に確認</h3>
+<p>寝ている場所の近くに背の高い家具がある場合は、家具の配置や転倒対策を確認しましょう。移動できる家具は、寝る場所や出入口との位置関係を見直すことも一つの方法です。</p>
+
+<h3>2. 背の高い家具</h3>
+<p>本棚・タンス・ラックなどは、家具の高さや重量、設置場所、壁や床の状態などによって適した対策が変わります。固定器具を使用する場合は、製品の説明書と設置条件を確認してください。</p>
+
+<h3>3. 家具の上に物を置かない</h3>
+<p>家具の上に重い物や硬い物を置いている場合、落下したときの影響を考えて配置を見直しましょう。特に寝る場所や通路の近くは確認しておくとよいでしょう。</p>
+
+<h3>4. テレビ・家電</h3>
+<p>テレビや電子レンジなどの重量のある家電は、転倒・滑りなどが起きないよう、製品メーカーが案内する方法を確認しましょう。台そのものの安定性も確認します。</p>
+
+<h3>5. 食器棚・ガラス</h3>
+<p>食器棚の扉や収納物について、揺れで開いたり飛び出したりしないか確認しましょう。ガラス製品は、落下・破損した場合の影響も考えて配置を見直します。</p>
+
+<h3>6. 照明</h3>
+<p>吊り下げ式などの照明器具がある場合は、メーカー等の案内を確認し、地震時の揺れや落下への対策を確認してください。</p>
+
+<h3>7. 避難経路</h3>
+<p>玄関・廊下・ドア周辺に物を置いていると、地震後の移動を妨げる可能性があります。普段から通路を確保し、倒れた家具が出入口をふさがないかも確認しましょう。</p>
+
+<h3>8. 賃貸なら「固定方法」も確認</h3>
+<p>壁・床・天井への穴あけや器具の取り付けは、建物や契約条件によって扱いが異なります。対策用品を取り付ける前に、管理会社・大家さんのルールや製品の設置条件を確認しましょう。</p>
+
+<h3>9. 今週末にできること</h3>
+<ul>
+<li>寝室の家具配置を確認する</li>
+<li>玄関・廊下・ドア周辺を片付ける</li>
+<li>家具の上の重い物を見直す</li>
+<li>テレビ・家電の転倒・滑り対策を確認する</li>
+<li>食器棚・ガラス製品の状態を確認する</li>
+<li>必要な対策について管理会社・メーカー等の案内を確認する</li>
+</ul>
+
+<h3>まとめ</h3>
+<p>地震対策は、一度にすべてを完璧にする必要はありません。まず診断で表示された優先項目を一つずつ確認し、自宅の条件に合った方法を選びましょう。</p>
+
+<div class="notice"><strong>注意：</strong>本記事は一般的な防災情報を整理したものです。建物・家具・器具等の安全性を保証するものではありません。具体的な施工・固定方法については、製品メーカー、管理会社、大家さん、専門家等の案内を確認してください。</div>
+</section>
+
+<footer>© 賃貸の地震対策チェック診断　｜　一般的な防災情報を整理したコンテンツです。</footer>
+</div>
+
+<script>
+const qs=[
+ {t:"背の高い家具（本棚・タンス・ラックなど）がありますか？",a:[["はい",2,"家具"],["いいえ",0,"家具"]]},
+ {t:"寝る場所の近くに、背の高い家具がありますか？",a:[["はい",3,"寝室"],["いいえ",0,"寝室"]],skipIf:(s)=>s.q1!=="はい"},
+ {t:"背の高い家具に、転倒を防ぐための対策をしていますか？",a:[["していない",3,"家具"],["している",0,"家具"],["分からない",2,"家具"]]},
+ {t:"家具の上に、重い物・硬い物・落下すると危険な物を置いていますか？",a:[["はい",2,"家具"],["いいえ",0,"家具"]]},
+ {t:"テレビが転倒しないような対策をしていますか？",a:[["していない",2,"家電"],["している",0,"家電"],["分からない",1,"家電"]]},
+ {t:"食器棚や収納棚の扉が、地震の揺れで開かないような対策をしていますか？",a:[["していない",2,"キッチン"],["している",0,"キッチン"],["該当なし",0,"キッチン"],["分からない",1,"キッチン"]]},
+ {t:"地震で割れる可能性があるガラス製品が、生活スペースの近くにありますか？",a:[["はい",2,"ガラス・照明"],["いいえ",0,"ガラス・照明"]]},
+ {t:"天井から吊り下がっている照明器具がありますか？",a:[["はい",1,"ガラス・照明"],["いいえ",0,"ガラス・照明"]]},
+ {t:"照明器具の地震時の落下・揺れ対策を確認していますか？",a:[["確認していない",2,"ガラス・照明"],["確認している",0,"ガラス・照明"],["分からない",1,"ガラス・照明"]],skipIf:(s)=>s.q8!=="はい"},
+ {t:"電子レンジ・オーブンなど、重量のある家電を固定・滑り対策していますか？",a:[["していない",2,"家電"],["している",0,"家電"],["分からない",1,"家電"],["該当なし",0,"家電"]]},
+ {t:"玄関・廊下・ドア周辺に、地震の際に移動の妨げになりそうな物がありますか？",a:[["はい",3,"避難経路"],["いいえ",0,"避難経路"]]},
+ {t:"倒れた家具が、ドアや避難経路をふさぐ可能性がありますか？",a:[["はい",3,"避難経路"],["いいえ",0,"避難経路"],["分からない",2,"避難経路"]]},
+ {t:"家具が窓・ガラスの近くにありますか？",a:[["はい",2,"ガラス・照明"],["いいえ",0,"ガラス・照明"]]},
+ {t:"家具などの地震対策をするとき、賃貸住宅の壁・床・天井の状態や管理会社・大家さんのルールを確認していますか？",a:[["確認していない",2,"賃貸ルール"],["確認している",0,"賃貸ルール"],["分からない",1,"賃貸ルール"]]},
+ {t:"「地震が起きたとき、自宅の中でどこが危ないか」を具体的に把握できていますか？",a:[["はい",0,"総合"],["ある程度",1,"総合"],["いいえ",2,"総合"]]}
+];
+
+let i=0,score=0,ans={},cats={};
+function startQuiz(){document.getElementById("start").classList.add("hidden");document.getElementById("quiz").classList.remove("hidden");i=0;score=0;ans={};cats={};showQ();}
+function restartQuiz(){document.getElementById("result").classList.add("hidden");document.getElementById("article").classList.add("hidden");document.getElementById("quiz").classList.remove("hidden");i=0;score=0;ans={};cats={};showQ();window.scrollTo({top:0,behavior:"smooth"});}
+function nextIndex(){while(i<qs.length && qs[i].skipIf && qs[i].skipIf(ans)) i++;return i;}
+function showQ(){
+ i=nextIndex();
+ if(i>=qs.length){finish();return;}
+ const q=qs[i];document.getElementById("qnum").textContent=`質問 ${i+1} / ${qs.length}`;
+ document.getElementById("bar").style.width=((i)/qs.length*100)+"%";
+ document.getElementById("question").textContent=q.t;
+ const box=document.getElementById("answers");box.innerHTML="";
+ q.a.forEach((x,n)=>{const b=document.createElement("button");b.className="answer";b.textContent=x[0];b.onclick=()=>answer(x);box.appendChild(b);});
+ window.scrollTo({top:0,behavior:"smooth"});
+}
+function answer(x){
+ ans["q"+(i+1)]=x[0];score+=x[1];cats[x[2]]=(cats[x[2]]||0)+x[1];i++;showQ();
+}
+function finish(){
+ document.getElementById("quiz").classList.add("hidden");document.getElementById("result").classList.remove("hidden");document.getElementById("article").classList.remove("hidden");
+ let title,intro;
+ if(score<=7){title="まずは定期的な確認から";intro="今回の回答では、比較的チェック項目が少ない結果でした。家具や避難経路などを定期的に確認し、住環境が変わったときにも見直しましょう。";}
+ else if(score<=14){title="いくつか確認しておきたい項目があります";intro="今回の回答から、いくつか対策を検討したい項目が見つかりました。まずは下の優先項目から確認しましょう。";}
+ else if(score<=21){title="優先して確認したい項目があります";intro="複数の項目について、転倒・落下や避難経路への影響を確認することをおすすめします。";}
+ else {title="まず自宅の中を一度整理して確認しましょう";intro="回答から、複数の項目について優先して確認したいポイントが見つかりました。特に家具の配置と避難経路から確認しましょう。";}
+ document.getElementById("resultTitle").textContent=title;document.getElementById("score").textContent=`チェックポイント ${score} 点`;document.getElementById("resultIntro").textContent=intro;
+ const sorted=Object.entries(cats).sort((a,b)=>b[1]-a[1]).filter(x=>x[0]!=="総合").slice(0,3);
+ const p=document.getElementById("priorities");p.innerHTML="<h3>あなたが優先して確認したい場所</h3>";
+ sorted.forEach((x,n)=>{const d=document.createElement("div");d.className="priority";d.innerHTML=`<strong>${n+1}. ${x[0]}</strong><br><span class="small">回答から算出した確認ポイント：${x[1]}点</span>`;p.appendChild(d);});
+ document.getElementById("bar").style.width="100%";window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
