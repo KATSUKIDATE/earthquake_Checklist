@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>住宅 電気×地震×停電 25問診断</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#17202a;--muted:#667085;--accent:#1769aa;--line:#e4e7ec;--good:#198754;--warn:#b76e00}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;line-height:1.7}
+.wrap{max-width:760px;margin:auto;padding:18px 14px 50px}.hero,.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:14px;box-shadow:0 4px 18px #00000008}
+h1{font-size:25px;line-height:1.35;margin:0 0 10px}.lead{color:var(--muted);margin:0}
+h2{font-size:20px;margin:0 0 10px} h3{font-size:17px;margin:20px 0 8px}
+.progress{height:8px;background:#e9edf2;border-radius:99px;overflow:hidden;margin:12px 0}.bar{height:100%;background:var(--accent);width:0}
+.q{font-weight:700;font-size:17px;margin:8px 0 12px}.choice{display:block;border:1px solid var(--line);border-radius:12px;padding:12px;margin:9px 0;background:#fff;cursor:pointer}.choice input{margin-right:8px;accent-color:var(--accent)}
+button{width:100%;border:0;border-radius:12px;padding:14px 16px;background:var(--accent);color:#fff;font-weight:700;font-size:16px;margin-top:8px;cursor:pointer}
+button.secondary{background:#eef4f9;color:var(--accent)}.hidden{display:none}.score{font-size:34px;font-weight:800}.level{font-size:20px;font-weight:800}.tag{display:inline-block;padding:5px 9px;border-radius:999px;background:#eef4f9;color:var(--accent);font-size:13px;margin:3px}
+.note{background:#fff8e6;border-left:4px solid #e2a72b;padding:12px;border-radius:8px}.resultbox{background:#f0f8f3;border:1px solid #cfe8d8;padding:14px;border-radius:12px}
+small{color:var(--muted)} ul{padding-left:22px}.footer{font-size:12px;color:var(--muted);margin-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+<h1>住宅「電気×地震×停電」25問診断</h1>
+<p class="lead">住まいのタイプに合わせて、地震・停電・電気設備について「まず確認したいポイント」を整理します。</p>
+</section>
+
+<section id="start" class="card">
+<h2>まず住まいを選んでください</h2>
+<label class="choice"><input type="radio" name="home" value="rental"> 賃貸住宅（アパート・賃貸マンション）</label>
+<label class="choice"><input type="radio" name="home" value="owned"> 持ち家（戸建て・分譲住宅）</label>
+<label class="choice"><input type="radio" name="home" value="condo"> 分譲マンション</label>
+<button onclick="startQuiz()">診断を始める</button>
+<p class="footer">※この診断は優先して確認したい項目を整理するためのチェックツールです。設備の安全性を保証するものではありません。</p>
+</section>
+
+<section id="quiz" class="card hidden">
+<div><small id="counter"></small><div class="progress"><div class="bar" id="bar"></div></div></div>
+<div id="questionArea"></div>
+<button onclick="next()">次へ</button>
+</section>
+
+<section id="result" class="card hidden">
+<h2>診断結果</h2>
+<div class="score" id="score"></div>
+<div class="level" id="level"></div>
+<p id="summary"></p>
+<div class="resultbox"><b>優先して確認したい分野</b><div id="priority"></div></div>
+<div id="detail"></div>
+<button onclick="showArticle()">解説を見る</button>
+<button class="secondary" onclick="location.reload()">もう一度診断する</button>
+</section>
+
+<section id="article" class="card hidden">
+<h2>診断結果の見方</h2>
+<h3>1. 地震で電気が止まったとき</h3>
+<p>停電すると、照明・通信・冷蔵庫などが使いにくくなります。夜間の照明、スマートフォンの充電手段、情報収集手段を平時から確認しておきましょう。</p>
+<h3>2. 地震後の電気</h3>
+<p>揺れの後は、倒れた家電、損傷したコード、焦げ臭い・異常な発熱などがないかを確認し、異常がある設備は無理に使用しないことが重要です。復電時にも注意が必要です。</p>
+<h3>3. 分電盤・ブレーカー</h3>
+<p>分電盤の場所、主幹ブレーカーや漏電時に働くブレーカーの位置などを、家族も含めて確認しておくと、停電時の対応を考えやすくなります。</p>
+<h3>4. コンセント・電源タップ</h3>
+<p>電源タップや延長コードの過度な使用、コードの踏みつけ・挟み込み、発熱や破損などを定期的に確認しましょう。</p>
+<h3>5. 持ち家・分譲住宅で追加確認したい設備</h3>
+<p>太陽光発電、蓄電池、エコキュート、IH、EV・V2Hなどがある場合は、停電時に何が使えるか、どの操作が必要かを取扱説明書やメーカーの案内で確認しておきましょう。</p>
+<h3>6. 賃貸住宅で確認したいこと</h3>
+<p>壁や設備への固定・工事を行う前に、契約内容や管理会社・貸主への確認が必要な場合があります。自分で施工できる範囲を確認してから対策しましょう。</p>
+<div class="note"><b>安全上の注意：</b>分電盤内部を開ける、配線を変更する、コンセントを交換するなどの作業は、必要な資格・法令・契約条件に従って、専門家へ相談してください。</div>
+<p class="footer">このページは防災・電気安全についての一般的な情報提供を目的としたものです。</p>
+</section>
+</div>
+
+<script>
+const common=[
+["家具・家電","背の高い家具がありますか？","yesno",2],
+["家具・家電","家具や家電が倒れたり動いたりしないための対策を確認していますか？","measure",2],
+["家具・家電","寝る場所の近くに、倒れる・落ちる可能性がある家具や物がありますか？","risk",2],
+["落下・ガラス","棚の上などに重い物・硬い物を置いていませんか？","yesno",1],
+["家電","テレビ・電子レンジなど、地震で動く可能性のある家電を確認していますか？","measure",2],
+["照明","吊り下げ式など、揺れで大きく動く照明がありますか？","yesno",1],
+["照明","停電時にすぐ使える懐中電灯・ランタン等がありますか？","light",2],
+["避難","廊下・玄関・出入口に家具や物があり、避難の邪魔になる可能性がありますか？","risk",2],
+["窓・ガラス","窓やガラスの近くに、地震で倒れたり割れたりした場合に危険になりそうな物がありますか？","risk",1],
+["コンセント","電源タップ・延長コードに、発熱・破損・変色などがないか確認していますか？","inspect",2],
+["コンセント","コードを家具で強く挟んだり、通路で踏んだりしていませんか？","risk",2],
+["停電","スマートフォンを停電時に充電できる手段がありますか？","power",2],
+["停電","停電時にラジオ・スマホ等で情報を確認する方法を用意していますか？","power",1],
+["停電","冷蔵庫の停電時の扱いについて、開閉を減らすなどの基本を把握していますか？","know",1],
+["電気安全","地震後に、焦げ臭い・異常な発熱・破損したコード等がないか確認する意識がありますか？","know",2],
+["復電","停電から復電した後に、異常のある家電や配線を無理に使用しないことを知っていますか？","know",2],
+["分電盤","分電盤・ブレーカーが家のどこにあるか把握していますか？","know",2],
+["電気安全","家族も分電盤・停電時の基本対応を把握していますか？","know",1]
+];
+const homeQs={
+rental:[
+["賃貸","家具固定や壁への取り付けについて、契約・管理会社のルールを確認していますか？","rental",2],
+["賃貸","入居者が触れてよい設備・工事してはいけない設備を把握していますか？","rental",2],
+["賃貸","停電時に共用部の照明・エレベーター等が使えない可能性を想定していますか？","rental",1],
+["停電","非常用電源やポータブル電源を使う場合の置き場所・換気・取扱方法を確認していますか？","power",1],
+["避難","夜間停電でも玄関まで移動できるよう、照明を置く場所を決めていますか？","light",1]
+],
+owned:[
+["持ち家","太陽光発電・蓄電池がある場合、停電時に使える機器・操作方法を確認していますか？","owned",2],
+["持ち家","エコキュート・IHなど、停電時の使い方を確認していますか？","owned",1],
+["持ち家","分電盤の回路表示が実際の設備と合っているか確認したことがありますか？","owned",2],
+["停電","ポータブル電源・発電機などを使う場合の設置・使用条件を確認していますか？","power",1],
+["電気設備","屋外コンセントや外部配線について、劣化・破損がないか確認していますか？","owned",1]
+],
+condo:[
+["分譲マンション","専有部の電気設備と、管理組合・管理会社が管理する設備の区分を把握していますか？","condo",2],
+["分譲マンション","停電時にエレベーター・オートロック・給水などへ影響する可能性を確認していますか？","condo",2],
+["分譲マンション","分電盤の場所と、専有部で操作できる範囲を把握していますか？","know",1],
+["停電","非常用電源やポータブル電源を使う場合の置き場所・換気・取扱方法を確認していますか？","power",1],
+["避難","夜間停電時の避難経路と、共用部の照明が使えない場合を想定していますか？","light",1]
+]};
+
+let home="", qs=[], idx=0, answers=[], total=0;
+function startQuiz(){
+ home=document.querySelector('input[name="home"]:checked')?.value;
+ if(!home){alert("住まいのタイプを選んでください");return}
+ qs=[...common,...homeQs[home]];
+ idx=0;answers=[];total=0;
+ document.getElementById("start").classList.add("hidden");
+ document.getElementById("quiz").classList.remove("hidden");
+ render();
+}
+function render(){
+ const q=qs[idx], type=q[2];
+ document.getElementById("counter").textContent=`${idx+1} / ${qs.length}`;
+ document.getElementById("bar").style.width=`${idx/qs.length*100}%`;
+ let opts;
+ if(["yesno","risk"].includes(type)) opts=[["はい",2],["いいえ",0]];
+ else if(type==="measure") opts=[["十分に確認・対策している",0],["一部だけ確認している",1],["特に確認していない",2]];
+ else if(type==="light") opts=[["すぐ使えるものがある",0],["あるが場所・電池等を確認していない",1],["特にない",2]];
+ else if(type==="power") opts=[["準備・確認している",0],["あるが十分に確認していない",1],["特にない",2]];
+ else if(type==="inspect") opts=[["定期的に確認している",0],["たまに確認する",1],["ほぼ確認していない",2]];
+ else if(type==="know") opts=[["よく把握している",0],["なんとなく知っている",1],["把握していない",2]];
+ else if(type==="rental") opts=[["確認している",0],["一部だけ確認している",1],["確認していない",2]];
+ else opts=[["確認している",0],["一部だけ確認している",1],["確認していない",2]];
+ document.getElementById("questionArea").innerHTML=`<div class="tag">${q[0]}</div><div class="q">${q[1]}</div>`+
+ opts.map((o,i)=>`<label class="choice"><input type="radio" name="ans" value="${o[1]}"> ${o[0]}</label>`).join("");
+}
+function next(){
+ const a=document.querySelector('input[name="ans"]:checked');
+ if(!a){alert("回答を選んでください");return}
+ total+=Number(a.value); answers.push({cat:qs[idx][0],score:Number(a.value)});
+ idx++;
+ if(idx<qs.length) render(); else finish();
+}
+function finish(){
+ document.getElementById("quiz").classList.add("hidden");
+ document.getElementById("result").classList.remove("hidden");
+ document.getElementById("score").textContent=`確認ポイント ${total}点`;
+ let level,summary;
+ if(total<=12){level="まずは定期的な確認から";summary="大きな確認漏れは比較的少ない結果です。定期的な点検と、停電時の備えを続けましょう。"}
+ else if(total<=22){level="いくつか確認しておきたい項目があります";summary="住まいの中に、先に確認しておくとよい項目があります。特に停電・電気安全から順番に見直しましょう。"}
+ else if(total<=32){level="優先して確認したい項目があります";summary="複数の分野で確認ポイントがあります。まず照明・電源・分電盤・避難経路など、停電時に困りやすい部分から整理しましょう。"}
+ else {level="一度、家の中をまとめて確認しましょう";summary="確認ポイントが多めです。無理に一度で対策せず、停電・電気安全・避難経路から優先順位をつけて進めましょう。"}
+ document.getElementById("level").textContent=level;
+ document.getElementById("summary").textContent=summary;
+ const cats={}; answers.forEach(x=>cats[x.cat]=(cats[x.cat]||0)+x.score);
+ const top=Object.entries(cats).sort((a,b)=>b[1]-a[1]).slice(0,3);
+ document.getElementById("priority").innerHTML=top.map(x=>`<span class="tag">${x[0]}</span>`).join("");
+ const advice=[];
+ if((cats["停電"]||0)>=2) advice.push("<li><b>停電対策：</b>照明・スマホ充電・情報収集手段を優先確認。</li>");
+ if((cats["電気安全"]||0)>=2 || (cats["コンセント"]||0)>=2) advice.push("<li><b>電気安全：</b>コード、電源タップ、家電の異常や損傷を確認。</li>");
+ if((cats["分電盤"]||0)>=2 || (cats["持ち家"]||0)>=2 || (cats["分譲マンション"]||0)>=2) advice.push("<li><b>設備：</b>分電盤や住宅設備の停電時の仕様を確認。</li>");
+ if((cats["家具・家電"]||0)>=2 || (cats["避難"]||0)>=2) advice.push("<li><b>地震・避難：</b>家具・家電の転倒や避難経路を確認。</li>");
+ if(home==="rental") advice.push("<li><b>賃貸：</b>固定・工事は契約や管理会社のルールを確認。</li>");
+ document.getElementById("detail").innerHTML="<h3>おすすめの次の一歩</h3><ul>"+advice.join("")+"</ul>";
+}
+function showArticle(){document.getElementById("article").classList.remove("hidden");document.getElementById("article").scrollIntoView({behavior:"smooth"});}
+</script>
+</body>
+</html>
