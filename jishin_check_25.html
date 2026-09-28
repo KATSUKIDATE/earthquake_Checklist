@@ -3,1108 +3,674 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>わが家の防災リスク25問診断</title>
-
+<title>わが家の電気・地震・停電 25問診断</title>
 <style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Hiragino Kaku Gothic ProN",
-    "Yu Gothic",
-    Meiryo,
-    sans-serif;
-  background: #f5f7fa;
-  color: #222;
-  line-height: 1.7;
-}
-
-.container {
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 20px 16px 50px;
-}
-
-header {
-  text-align: center;
-  padding: 25px 10px;
-}
-
-header h1 {
-  font-size: 26px;
-  margin: 0 0 10px;
-}
-
-header p {
-  margin: 0;
-  color: #666;
-}
-
-.card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 22px;
-  margin-bottom: 18px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.06);
-}
-
-.progress-area {
-  margin-bottom: 20px;
-}
-
-.progress-text {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 7px;
-}
-
-.progress {
-  width: 100%;
-  height: 10px;
-  background: #e5e7eb;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: #333;
-  transition: width 0.3s;
-}
-
-.question-number {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 5px;
-}
-
-.question {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.choice {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  margin: 10px 0;
-  border: 2px solid #ddd;
-  background: #fff;
-  border-radius: 10px;
-  text-align: left;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.choice:hover {
-  background: #f3f4f6;
-}
-
-.choice.selected {
-  border-color: #222;
-  background: #f0f0f0;
-}
-
-button {
-  font-family: inherit;
-}
-
-.main-button {
-  display: block;
-  width: 100%;
-  border: none;
-  border-radius: 10px;
-  padding: 15px;
-  margin-top: 20px;
-  background: #222;
-  color: white;
-  font-size: 17px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.main-button:disabled {
-  background: #bbb;
-  cursor: not-allowed;
-}
-
-.back-button {
-  width: 100%;
-  border: 1px solid #ccc;
-  background: white;
-  border-radius: 10px;
-  padding: 13px;
-  margin-top: 10px;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.hidden {
-  display: none;
-}
-
-.result-title {
-  text-align: center;
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-
-.result-summary {
-  text-align: center;
-  color: #555;
-  margin-bottom: 25px;
-}
-
-.category {
-  margin: 18px 0;
-  padding: 17px;
-  border-radius: 12px;
-  background: #f7f7f7;
-}
-
-.category h3 {
-  margin: 0 0 7px;
-}
-
-.score {
-  font-size: 14px;
-  color: #666;
-}
-
-.risk-high {
-  border-left: 6px solid #d32f2f;
-}
-
-.risk-middle {
-  border-left: 6px solid #f57c00;
-}
-
-.risk-low {
-  border-left: 6px solid #388e3c;
-}
-
-.priority {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.action-list {
-  padding-left: 20px;
-  margin-bottom: 0;
-}
-
-.overall {
-  text-align: center;
-  padding: 20px;
-  background: #f1f1f1;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
-
-.overall-number {
-  font-size: 38px;
-  font-weight: bold;
-}
-
-.small-note {
-  font-size: 13px;
-  color: #777;
-}
-
-.start-button {
-  margin-top: 15px;
-}
-
-.restart {
-  margin-top: 20px;
-}
-
-.footer {
-  text-align: center;
-  font-size: 12px;
-  color: #888;
-  margin-top: 30px;
-}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans JP",sans-serif;background:#f5f6f8;color:#222;line-height:1.7}
+.container{max-width:720px;margin:auto;padding:18px}
+.card{background:#fff;border-radius:18px;padding:22px;margin:14px 0;box-shadow:0 3px 14px rgba(0,0,0,.07)}
+h1{font-size:25px;line-height:1.35;margin:0 0 10px}
+h2{font-size:20px;margin-top:0}
+h3{font-size:17px}
+.lead{color:#555}
+.badge{display:inline-block;background:#eef2ff;border-radius:999px;padding:5px 11px;font-size:13px;margin-bottom:10px}
+.progress{height:9px;background:#e7e7e7;border-radius:99px;overflow:hidden;margin:12px 0 20px}
+.progress span{display:block;height:100%;background:#333;width:0}
+.question{font-size:19px;font-weight:700;margin:8px 0 18px}
+.choice{display:block;border:1px solid #ddd;border-radius:13px;padding:14px;margin:10px 0;cursor:pointer;background:#fff}
+.choice:hover{background:#fafafa}
+.choice input{margin-right:10px;transform:scale(1.15)}
+button{width:100%;border:0;border-radius:13px;padding:15px;font-size:17px;font-weight:700;background:#222;color:white;cursor:pointer;margin-top:8px}
+button.secondary{background:#eee;color:#222}
+button:disabled{opacity:.4}
+.hidden{display:none}
+.score{font-size:46px;font-weight:800;text-align:center;margin:5px 0}
+.level{text-align:center;font-size:20px;font-weight:700}
+.resultbox{border-radius:15px;padding:16px;background:#f5f5f5;margin:14px 0}
+.item{padding:13px 0;border-bottom:1px solid #eee}
+.item:last-child{border-bottom:0}
+.rank{font-weight:800}
+small{color:#666}
+ul{padding-left:22px}
+.footer{font-size:12px;color:#777;text-align:center;margin:25px 0}
+.todo{border:1px solid #e5e5e5;border-radius:14px;padding:15px;margin:12px 0;background:#fff}
+.todoTop{font-weight:800;font-size:18px}
+.cost{display:inline-block;margin:7px 0;padding:4px 9px;border-radius:999px;background:#f1f3f5;font-size:13px}
+.when{font-weight:700}
+.why{color:#555;font-size:14px}
 </style>
 </head>
 
 <body>
-
 <div class="container">
 
-<header>
-  <h1>わが家の防災リスク25問診断</h1>
-  <p>地震・火災・停電・断水・避難の5分野をチェック</p>
-</header>
+<section id="start" class="card">
+<div class="badge">無料・25問・約5分</div>
+<h1>わが家の<br>電気・地震・停電 25問診断</h1>
+
+<p class="lead">
+あなたの住まいの「地震」「停電」「電気まわり」の備えをセルフチェックします。
+</p>
+
+<h3>この診断で分かること</h3>
+
+<ul>
+<li>家具・家電の転倒対策</li>
+<li>避難経路・照明の安全性</li>
+<li>停電時の電源・明かり</li>
+<li>分電盤・コンセントまわりの確認</li>
+<li>あなたの家で優先して確認したいポイント</li>
+</ul>
+
+<p>
+<small>
+※これはセルフチェックです。電気設備の異常や危険が疑われる場合は、専門業者等へ相談してください。
+</small>
+</p>
+
+<button onclick="startDiagnosis()">診断を始める</button>
+</section>
 
 
-<!-- スタート画面 -->
-<div id="startScreen" class="card">
+<section id="quiz" class="hidden">
 
-  <h2>あなたの家の防災リスクをチェック</h2>
+<div class="card">
 
-  <p>
-    25問の質問に答えるだけで、あなたの家で優先して対策したい
-    防災リスクを5つのカテゴリーに分けて診断します。
-  </p>
+<div id="counter" class="badge"></div>
 
-  <ul>
-    <li>地震</li>
-    <li>火災</li>
-    <li>停電</li>
-    <li>断水</li>
-    <li>避難</li>
-  </ul>
+<div class="progress">
+<span id="bar"></span>
+</div>
 
-  <p class="small-note">
-    ※この診断は防災意識を高めるための簡易チェックです。
-    災害時の安全を保証するものではありません。
-  </p>
+<div id="question" class="question"></div>
 
-  <button class="main-button start-button" onclick="startDiagnosis()">
-    診断をスタート
-  </button>
+<div id="choices"></div>
+
+<button id="next" onclick="nextQuestion()" disabled>
+次へ
+</button>
+
+</div>
+
+</section>
+
+
+<section id="result" class="hidden">
+
+<div class="card">
+
+<div class="badge">診断結果</div>
+
+<h1>あなたの自宅チェック結果</h1>
+
+<div class="score" id="score"></div>
+
+<div class="level" id="level"></div>
+
+<p id="summary"></p>
 
 </div>
 
 
-<!-- 質問画面 -->
-<div id="questionScreen" class="card hidden">
+<div class="card">
 
-  <div class="progress-area">
-    <div id="progressText" class="progress-text">
-      1 / 25
-    </div>
+<h2>優先して確認したいポイント</h2>
 
-    <div class="progress">
-      <div id="progressBar" class="progress-bar"></div>
-    </div>
-  </div>
-
-  <div id="questionNumber" class="question-number"></div>
-
-  <div id="questionText" class="question"></div>
-
-  <div id="choices"></div>
-
-  <button
-    id="nextButton"
-    class="main-button"
-    onclick="nextQuestion()"
-    disabled>
-    次へ
-  </button>
-
-  <button
-    id="backButton"
-    class="back-button"
-    onclick="previousQuestion()">
-    前の質問へ
-  </button>
+<div id="priority"></div>
 
 </div>
 
 
-<!-- 結果画面 -->
-<div id="resultScreen" class="hidden">
+<div class="card">
 
-  <div class="card">
+<h2>分野別スコア</h2>
 
-    <h2 class="result-title">
-      診断結果
-    </h2>
+<div id="categories"></div>
 
-    <p class="result-summary">
-      あなたの家で優先して確認したいリスクを
-      高い順に表示しています。
-    </p>
+</div>
 
-    <div class="overall">
-      <div>総合チェックポイント</div>
-      <div id="overallScore" class="overall-number">0</div>
-      <div> / 100</div>
-    </div>
 
-    <h2>リスクランキング</h2>
+<div class="card">
 
-    <div id="resultCategories"></div>
+<h2>今日からできる3つ</h2>
 
-    <button
-      class="main-button restart"
-      onclick="restartDiagnosis()">
-      もう一度診断する
-    </button>
+<div id="actions"></div>
 
-  </div>
+</div>
+
+
+<div class="card">
+
+<h2>あなたがやることTOP5</h2>
+
+<p>
+<small>
+診断で点数が低かった項目を優先し、
+「何をするか」と費用の目安を表示しています。
+</small>
+</p>
+
+<div id="top5"></div>
+
+</div>
+
+
+<div class="card">
+
+<h2>次のステップ</h2>
+
+<p>
+診断結果をもとに、家の中を実際に確認してみましょう。
+</p>
+
+<ul>
+<li>家具・家電の転倒や移動を確認</li>
+<li>避難経路に物がないか確認</li>
+<li>停電時の照明・充電手段を確認</li>
+<li>コンセント・電源タップに異常がないか確認</li>
+</ul>
+
+<p>
+<small>
+本診断は一般的なセルフチェックを目的としたもので、安全性を保証するものではありません。
+</small>
+</p>
+
+<button onclick="window.print()">
+結果を保存・印刷
+</button>
+
+<button class="secondary" onclick="location.reload()">
+もう一度診断する
+</button>
 
 </div>
 
 
 <div class="footer">
-  わが家の防災リスク25問診断
+© わが家の安心チェック
 </div>
+
+</section>
 
 </div>
 
 
 <script>
 
-/* =========================
-   質問データ
-========================= */
-
 const questions = [
 
-  /* 地震 */
-  {
-    category: "地震",
-    text: "家具が倒れないように固定していますか？",
-    choices: [
-      { text: "しっかり固定している", score: 0 },
-      { text: "一部だけ固定している", score: 2 },
-      { text: "ほとんど固定していない", score: 4 }
-    ]
-  },
+{cat:"家具・家電",q:"背の高い家具は、地震で倒れにくいよう固定していますか？",a:["しっかり固定している","一部だけ固定している","固定していない"],s:[2,1,0]},
 
-  {
-    category: "地震",
-    text: "寝ている場所の近くに倒れてくる家具がありますか？",
-    choices: [
-      { text: "ない", score: 0 },
-      { text: "少しある", score: 2 },
-      { text: "ある", score: 4 }
-    ]
-  },
+{cat:"家具・家電",q:"テレビやモニターが、地震で倒れたり移動したりしにくい状態ですか？",a:["対策している","一部対策している","対策していない"],s:[2,1,0]},
 
-  {
-    category: "地震",
-    text: "食器棚などの扉に地震対策をしていますか？",
-    choices: [
-      { text: "している", score: 0 },
-      { text: "一部している", score: 2 },
-      { text: "していない", score: 4 }
-    ]
-  },
+{cat:"家具・家電",q:"寝ている場所の近くに、倒れてくる家具はありませんか？",a:["ない","少し気になる","ある"],s:[2,1,0]},
 
-  {
-    category: "地震",
-    text: "大きな家具の上に重い物を置いていませんか？",
-    choices: [
-      { text: "置いていない", score: 0 },
-      { text: "少し置いている", score: 2 },
-      { text: "かなり置いている", score: 4 }
-    ]
-  },
+{cat:"家具・家電",q:"食器棚などから食器が飛び出しにくい対策をしていますか？",a:["している","一部している","していない"],s:[2,1,0]},
 
-  {
-    category: "地震",
-    text: "地震が起きたときの家族の集合場所を決めていますか？",
-    choices: [
-      { text: "決めている", score: 0 },
-      { text: "なんとなく決めている", score: 2 },
-      { text: "決めていない", score: 4 }
-    ]
-  },
+{cat:"家具・家電",q:"冷蔵庫など大きな家電の転倒・移動対策を確認していますか？",a:["確認・対策済み","確認したが対策は不十分","確認していない"],s:[2,1,0]},
 
+{cat:"避難・照明",q:"玄関や廊下など、避難経路に大きな障害物はありませんか？",a:["ない","少しある","ある"],s:[2,1,0]},
 
-  /* 火災 */
-  {
-    category: "火災",
-    text: "住宅用火災警報器を設置していますか？",
-    choices: [
-      { text: "設置している", score: 0 },
-      { text: "一部だけ設置している", score: 2 },
-      { text: "設置していない・分からない", score: 4 }
-    ]
-  },
+{cat:"避難・照明",q:"夜間の停電時に使える懐中電灯やランタンがありますか？",a:["すぐ使える","あるが場所が不明確","ない"],s:[2,1,0]},
 
-  {
-    category: "火災",
-    text: "コンセントや電源タップにホコリがたまっていませんか？",
-    choices: [
-      { text: "定期的に掃除している", score: 0 },
-      { text: "たまに掃除する", score: 2 },
-      { text: "ほとんど掃除していない", score: 4 }
-    ]
-  },
+{cat:"避難・照明",q:"停電時でも家族が安全に移動できる照明を準備していますか？",a:["準備している","一部準備している","していない"],s:[2,1,0]},
 
-  {
-    category: "火災",
-    text: "電気コードを家具などで強く押さえていませんか？",
-    choices: [
-      { text: "していない", score: 0 },
-      { text: "一部ある", score: 2 },
-      { text: "ある", score: 4 }
-    ]
-  },
+{cat:"避難・照明",q:"家具が倒れて玄関や避難経路をふさぐ可能性を確認していますか？",a:["確認済み","なんとなく確認した","確認していない"],s:[2,1,0]},
 
-  {
-    category: "火災",
-    text: "ストーブなどの周囲に燃えやすい物を置いていませんか？",
-    choices: [
-      { text: "置いていない", score: 0 },
-      { text: "少しある", score: 2 },
-      { text: "ある", score: 4 }
-    ]
-  },
+{cat:"避難・照明",q:"靴やスリッパなど、ガラス片がある場所を歩くための備えがありますか？",a:["ある","一部ある","ない"],s:[2,1,0]},
 
-  {
-    category: "火災",
-    text: "消火器などの初期消火用品を準備していますか？",
-    choices: [
-      { text: "準備している", score: 0 },
-      { text: "購入を検討している", score: 2 },
-      { text: "準備していない", score: 4 }
-    ]
-  },
+{cat:"停電",q:"停電時にスマートフォンを充電できる手段がありますか？",a:["複数ある","1つある","ない"],s:[2,1,0]},
 
+{cat:"停電",q:"モバイルバッテリーなどを定期的に充電・確認していますか？",a:["している","たまにしている","していない"],s:[2,1,0]},
 
-  /* 停電 */
-  {
-    category: "停電",
-    text: "停電時に使える懐中電灯を準備していますか？",
-    choices: [
-      { text: "すぐ使える場所にある", score: 0 },
-      { text: "あるが場所が分からない", score: 2 },
-      { text: "ない", score: 4 }
-    ]
-  },
+{cat:"停電",q:"冷蔵庫・冷凍庫の停電対策を考えていますか？",a:["考えている","少し考えている","考えていない"],s:[2,1,0]},
 
-  {
-    category: "停電",
-    text: "スマートフォン用のモバイルバッテリーを準備していますか？",
-    choices: [
-      { text: "準備している", score: 0 },
-      { text: "あるが充電状態が不十分", score: 2 },
-      { text: "ない", score: 4 }
-    ]
-  },
+{cat:"停電",q:"停電したときに必要な家電と、不要な家電を把握していますか？",a:["把握している","一部把握している","把握していない"],s:[2,1,0]},
 
-  {
-    category: "停電",
-    text: "停電時に冷蔵庫の中身をどうするか考えていますか？",
-    choices: [
-      { text: "考えている", score: 0 },
-      { text: "少し考えたことがある", score: 2 },
-      { text: "考えていない", score: 4 }
-    ]
-  },
+{cat:"停電",q:"長時間停電した場合の電源確保について考えていますか？",a:["考えている","少し考えている","考えていない"],s:[2,1,0]},
 
-  {
-    category: "停電",
-    text: "夜間に停電した場合の照明を準備していますか？",
-    choices: [
-      { text: "準備している", score: 0 },
-      { text: "一部準備している", score: 2 },
-      { text: "準備していない", score: 4 }
-    ]
-  },
+{cat:"電気安全",q:"分電盤（ブレーカー）が家のどこにあるか家族が把握していますか？",a:["把握している","一部の人だけ知っている","知らない"],s:[2,1,0]},
 
-  {
-    category: "停電",
-    text: "停電時に電気が必要な機器を把握していますか？",
-    choices: [
-      { text: "把握している", score: 0 },
-      { text: "なんとなく分かる", score: 2 },
-      { text: "分からない", score: 4 }
-    ]
-  },
+{cat:"電気安全",q:"分電盤の前に物を置かず、操作できる状態になっていますか？",a:["なっている","少し物がある","ふさがっている"],s:[2,1,0]},
 
+{cat:"電気安全",q:"コンセントや電源タップに、焦げ・変色・破損などがないか確認していますか？",a:["確認している","以前確認した","確認していない"],s:[2,1,0]},
 
-  /* 断水 */
-  {
-    category: "断水",
-    text: "飲料水を備蓄していますか？",
-    choices: [
-      { text: "十分に備蓄している", score: 0 },
-      { text: "少し備蓄している", score: 2 },
-      { text: "備蓄していない", score: 4 }
-    ]
-  },
+{cat:"電気安全",q:"電源タップや延長コードを、容量を超えて使っていないか確認していますか？",a:["確認している","たぶん大丈夫","確認していない"],s:[2,1,0]},
 
-  {
-    category: "断水",
-    text: "トイレが使えなくなった場合の準備をしていますか？",
-    choices: [
-      { text: "準備している", score: 0 },
-      { text: "少し準備している", score: 2 },
-      { text: "準備していない", score: 4 }
-    ]
-  },
+{cat:"電気安全",q:"コードを家具の下敷きにしたり、強く束ねたりしていませんか？",a:["していない","一部気になる","している"],s:[2,1,0]},
 
-  {
-    category: "断水",
-    text: "生活用水を確保する方法を考えていますか？",
-    choices: [
-      { text: "考えている", score: 0 },
-      { text: "少し考えたことがある", score: 2 },
-      { text: "考えていない", score: 4 }
-    ]
-  },
+{cat:"備蓄",q:"停電・断水を想定した飲料水を備えていますか？",a:["十分にある","少しある","ない"],s:[2,1,0]},
 
-  {
-    category: "断水",
-    text: "給水所などの場所を確認していますか？",
-    choices: [
-      { text: "確認している", score: 0 },
-      { text: "なんとなく知っている", score: 2 },
-      { text: "知らない", score: 4 }
-    ]
-  },
+{cat:"備蓄",q:"非常用トイレを準備していますか？",a:["準備している","少しある","ない"],s:[2,1,0]},
 
-  {
-    category: "断水",
-    text: "水を運ぶための容器などを準備していますか？",
-    choices: [
-      { text: "準備している", score: 0 },
-      { text: "一部準備している", score: 2 },
-      { text: "準備していない", score: 4 }
-    ]
-  },
+{cat:"備蓄",q:"停電時に必要な生活用品を家族で把握していますか？",a:["把握している","一部把握している","していない"],s:[2,1,0]},
 
+{cat:"家族",q:"災害時の連絡方法や集合場所を家族で決めていますか？",a:["決めている","一部決めている","決めていない"],s:[2,1,0]},
 
-  /* 避難 */
-  {
-    category: "避難",
-    text: "自宅周辺の避難所を確認していますか？",
-    choices: [
-      { text: "確認している", score: 0 },
-      { text: "名前だけ知っている", score: 2 },
-      { text: "知らない", score: 4 }
-    ]
-  },
-
-  {
-    category: "避難",
-    text: "避難所までのルートを実際に確認したことがありますか？",
-    choices: [
-      { text: "実際に歩いて確認した", score: 0 },
-      { text: "地図で確認した", score: 2 },
-      { text: "確認していない", score: 4 }
-    ]
-  },
-
-  {
-    category: "避難",
-    text: "家族との連絡方法を決めていますか？",
-    choices: [
-      { text: "決めている", score: 0 },
-      { text: "なんとなく決めている", score: 2 },
-      { text: "決めていない", score: 4 }
-    ]
-  },
-
-  {
-    category: "避難",
-    text: "非常用持ち出し袋を準備していますか？",
-    choices: [
-      { text: "準備してすぐ持ち出せる", score: 0 },
-      { text: "準備しているが見直していない", score: 2 },
-      { text: "準備していない", score: 4 }
-    ]
-  },
-
-  {
-    category: "避難",
-    text: "避難するときに必要な物を家族で把握していますか？",
-    choices: [
-      { text: "家族全員が把握している", score: 0 },
-      { text: "一部の人だけ把握している", score: 2 },
-      { text: "把握していない", score: 4 }
-    ]
-  }
+{cat:"家族",q:"家族全員が、停電時・地震時に最初に何をするか知っていますか？",a:["知っている","一部だけ知っている","知らない"],s:[2,1,0]}
 
 ];
 
 
-/* =========================
-   設定
-========================= */
+let current=0;
+let answers=[];
 
-let currentQuestion = 0;
 
-let answers = [];
+function startDiagnosis(){
 
-const categories = [
-  "地震",
-  "火災",
-  "停電",
-  "断水",
-  "避難"
-];
+document.getElementById("start").classList.add("hidden");
 
+document.getElementById("quiz").classList.remove("hidden");
 
-/* =========================
-   診断スタート
-========================= */
-
-function startDiagnosis() {
-
-  currentQuestion = 0;
-
-  answers = [];
-
-  document.getElementById("startScreen")
-    .classList.add("hidden");
-
-  document.getElementById("resultScreen")
-    .classList.add("hidden");
-
-  document.getElementById("questionScreen")
-    .classList.remove("hidden");
-
-  showQuestion();
-}
-
-
-/* =========================
-   質問表示
-========================= */
-
-function showQuestion() {
-
-  const q = questions[currentQuestion];
-
-  document.getElementById("questionNumber").textContent =
-    "Q" + (currentQuestion + 1);
-
-  document.getElementById("questionText").textContent =
-    q.text;
-
-  document.getElementById("progressText").textContent =
-    (currentQuestion + 1) + " / " + questions.length;
-
-  const progress =
-    ((currentQuestion + 1) / questions.length) * 100;
-
-  document.getElementById("progressBar").style.width =
-    progress + "%";
-
-  const choicesDiv =
-    document.getElementById("choices");
-
-  choicesDiv.innerHTML = "";
-
-  q.choices.forEach((choice, index) => {
-
-    const button = document.createElement("button");
-
-    button.className = "choice";
-
-    button.textContent = choice.text;
-
-    button.onclick = function() {
-      selectChoice(index);
-    };
-
-    choicesDiv.appendChild(button);
-
-  });
-
-  document.getElementById("nextButton").disabled =
-    answers[currentQuestion] === undefined;
-}
-
-
-/* =========================
-   回答選択
-========================= */
-
-function selectChoice(index) {
-
-  answers[currentQuestion] = index;
-
-  const buttons =
-    document.querySelectorAll(".choice");
-
-  buttons.forEach(function(button, i) {
-
-    if (i === index) {
-      button.classList.add("selected");
-    } else {
-      button.classList.remove("selected");
-    }
-
-  });
-
-  document.getElementById("nextButton").disabled = false;
-}
-
-
-/* =========================
-   次の質問
-========================= */
-
-function nextQuestion() {
-
-  if (answers[currentQuestion] === undefined) {
-    return;
-  }
-
-  if (currentQuestion < questions.length - 1) {
-
-    currentQuestion++;
-
-    showQuestion();
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  } else {
-
-    showResults();
-
-  }
-}
-
-
-/* =========================
-   前の質問
-========================= */
-
-function previousQuestion() {
-
-  if (currentQuestion > 0) {
-
-    currentQuestion--;
-
-    showQuestion();
-
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
-  }
-}
-
-
-/* =========================
-   結果計算
-========================= */
-
-function calculateResults() {
-
-  const scores = {};
-
-  categories.forEach(function(category) {
-    scores[category] = 0;
-  });
-
-  questions.forEach(function(question, index) {
-
-    const answerIndex = answers[index];
-
-    if (answerIndex === undefined) {
-      return;
-    }
-
-    const score =
-      question.choices[answerIndex].score;
-
-    scores[question.category] += score;
-
-  });
-
-  return scores;
-}
-
-
-/* =========================
-   結果表示
-========================= */
-
-function showResults() {
-
-  const scores = calculateResults();
-
-  const sorted =
-    categories
-      .map(function(category) {
-        return {
-          category: category,
-          score: scores[category]
-        };
-      })
-      .sort(function(a, b) {
-        return b.score - a.score;
-      });
-
-
-  document.getElementById("questionScreen")
-    .classList.add("hidden");
-
-  document.getElementById("resultScreen")
-    .classList.remove("hidden");
-
-
-  /* 総合スコア */
-
-  const total =
-    sorted.reduce(function(sum, item) {
-      return sum + item.score;
-    }, 0);
-
-  const maxScore = 100;
-
-  const overall =
-    Math.round((total / maxScore) * 100);
-
-  document.getElementById("overallScore").textContent =
-    overall;
-
-
-  /* カテゴリー結果 */
-
-  const resultDiv =
-    document.getElementById("resultCategories");
-
-  resultDiv.innerHTML = "";
-
-
-  sorted.forEach(function(item, index) {
-
-    const category = item.category;
-
-    const score = item.score;
-
-    let level = "";
-
-    let className = "";
-
-    let action = [];
-
-    if (score >= 15) {
-
-      level = "優先して対策したい";
-
-      className = "risk-high";
-
-      action = getActions(category, "high");
-
-    } else if (score >= 7) {
-
-      level = "対策を見直したい";
-
-      className = "risk-middle";
-
-      action = getActions(category, "middle");
-
-    } else {
-
-      level = "現在の対策を維持";
-
-      className = "risk-low";
-
-      action = getActions(category, "low");
-
-    }
-
-
-    const div =
-      document.createElement("div");
-
-    div.className =
-      "category " + className;
-
-
-    let actionHtml = "";
-
-    action.forEach(function(text) {
-
-      actionHtml +=
-        "<li>" + text + "</li>";
-
-    });
-
-
-    div.innerHTML = `
-
-      <h3>
-        ${index + 1}位　${category}
-      </h3>
-
-      <div class="score">
-        チェックポイント：${score} / 20
-      </div>
-
-      <div class="priority">
-        ${level}
-      </div>
-
-      <strong>まずやること</strong>
-
-      <ul class="action-list">
-        ${actionHtml}
-      </ul>
-
-    `;
-
-    resultDiv.appendChild(div);
-
-  });
-
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+showQuestion();
 
 }
 
 
-/* =========================
-   対策内容
-========================= */
+function showQuestion(){
 
-function getActions(category, level) {
+const q=questions[current];
 
-  const actions = {
+document.getElementById("counter").textContent=
+`質問 ${current+1} / ${questions.length}　｜ ${q.cat}`;
 
-    "地震": {
+document.getElementById("bar").style.width=
+`${((current)/questions.length)*100}%`;
 
-      high: [
-        "家具の転倒防止を優先して確認する",
-        "寝室の周囲に倒れてくる家具がないか確認する",
-        "食器棚などの扉の開放防止を確認する"
-      ],
+document.getElementById("question").textContent=q.q;
 
-      middle: [
-        "家具固定の不足している場所を確認する",
-        "寝室周辺の家具配置を見直す",
-        "家族の集合場所を確認する"
-      ],
+const c=document.getElementById("choices");
 
-      low: [
-        "現在の家具固定を定期的に点検する",
-        "家具の配置変更時にも安全性を確認する"
-      ]
-
-    },
+c.innerHTML="";
 
 
-    "火災": {
+q.a.forEach((x,i)=>{
 
-      high: [
-        "住宅用火災警報器の設置・動作を確認する",
-        "コンセントや電源タップのホコリを掃除する",
-        "燃えやすい物を火気から離す"
-      ],
+const label=document.createElement("label");
 
-      middle: [
-        "火災警報器の設置場所を確認する",
-        "電気コードやタップの状態を確認する",
-        "消火器などの初期消火用品を確認する"
-      ],
+label.className="choice";
 
-      low: [
-        "火災警報器を定期的に点検する",
-        "コンセント周辺を定期的に掃除する"
-      ]
+label.innerHTML=
+`<input type="radio" name="answer" value="${i}"> ${x}`;
 
-    },
+label.querySelector("input").addEventListener("change",()=>{
+
+document.getElementById("next").disabled=false;
+
+});
+
+c.appendChild(label);
+
+});
 
 
-    "停電": {
+document.getElementById("next").textContent=
+current===questions.length-1?"結果を見る":"次へ";
 
-      high: [
-        "懐中電灯をすぐ使える場所に置く",
-        "スマートフォン用モバイルバッテリーを準備する",
-        "停電時に必要な電気機器を整理する"
-      ],
-
-      middle: [
-        "照明器具の代替手段を確認する",
-        "モバイルバッテリーの充電状態を確認する",
-        "冷蔵庫の停電対策を確認する"
-      ],
-
-      low: [
-        "非常用照明を定期的に点検する",
-        "モバイルバッテリーを定期的に充電する"
-      ]
-
-    },
-
-
-    "断水": {
-
-      high: [
-        "飲料水の備蓄量を確認する",
-        "非常用トイレを準備する",
-        "生活用水を確保する方法を決める"
-      ],
-
-      middle: [
-        "備蓄水の量と保管場所を確認する",
-        "給水所の場所を確認する",
-        "水を運ぶ容器を準備する"
-      ],
-
-      low: [
-        "備蓄水の消費期限を定期的に確認する",
-        "給水所などの情報を定期的に確認する"
-      ]
-
-    },
-
-
-    "避難": {
-
-      high: [
-        "自宅周辺の避難所を確認する",
-        "避難ルートを実際に歩いて確認する",
-        "家族との連絡方法を決める"
-      ],
-
-      middle: [
-        "避難所までのルートを地図で確認する",
-        "非常用持ち出し袋を見直す",
-        "家族の連絡方法を確認する"
-      ],
-
-      low: [
-        "避難ルートを定期的に確認する",
-        "非常用持ち出し袋を定期的に点検する"
-      ]
-
-    }
-
-  };
-
-
-  return actions[category][level];
+document.getElementById("next").disabled=true;
 
 }
 
 
-/* =========================
-   再診断
-========================= */
+function nextQuestion(){
 
-function restartDiagnosis() {
+const selected=
+document.querySelector('input[name="answer"]:checked');
 
-  document.getElementById("resultScreen")
-    .classList.add("hidden");
+if(!selected)return;
 
-  document.getElementById("startScreen")
-    .classList.remove("hidden");
+answers[current]=Number(selected.value);
 
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
+if(current<questions.length-1){
+
+current++;
+
+showQuestion();
+
+window.scrollTo(0,0);
+
+}else{
+
+showResult();
+
+}
+
+}
+
+
+function showResult(){
+
+let total=0;
+
+const cats={};
+
+
+questions.forEach((q,i)=>{
+
+const score=q.s[answers[i]];
+
+total+=score;
+
+if(!cats[q.cat])
+cats[q.cat]={score:0,max:0};
+
+cats[q.cat].score+=score;
+
+cats[q.cat].max+=2;
+
+});
+
+
+const pct=
+Math.round(total/(questions.length*2)*100);
+
+
+document.getElementById("quiz").classList.add("hidden");
+
+document.getElementById("result").classList.remove("hidden");
+
+
+document.getElementById("score").textContent=
+`${pct}点`;
+
+
+let level;
+let summary;
+
+
+if(pct>=85){
+
+level="かなり整っています";
+
+summary=
+"基本的な備えは整っています。定期点検と、家族構成・季節に応じた見直しを続けましょう。";
+
+}
+
+else if(pct>=65){
+
+level="もう一歩です";
+
+summary=
+"基本的な備えはありますが、いくつか優先して確認したい項目があります。";
+
+}
+
+else if(pct>=45){
+
+level="要改善ポイントがあります";
+
+summary=
+"地震・停電時に困る可能性のある項目が複数あります。まず優先度の高い項目から改善しましょう。";
+
+}
+
+else{
+
+level="まずは基本対策から";
+
+summary=
+"優先して確認したい項目が多くあります。一度に全部やらず、まず3項目から始めましょう。";
+
+}
+
+
+document.getElementById("level").textContent=level;
+
+document.getElementById("summary").textContent=summary;
+
+
+const priorities=
+questions
+.map((q,i)=>({
+q,
+i,
+score:q.s[answers[i]]
+}))
+.sort((a,b)=>a.score-b.score)
+.slice(0,5);
+
+
+document.getElementById("priority").innerHTML=
+
+priorities.map((x,n)=>`
+
+<div class="item">
+
+<span class="rank">
+${n+1}. ${x.q.q}
+</span>
+
+<br>
+
+<small>
+${x.q.a[answers[x.i]]}
+</small>
+
+</div>
+
+`).join("");
+
+
+document.getElementById("categories").innerHTML=
+
+Object.entries(cats).map(([name,v])=>{
+
+const p=Math.round(v.score/v.max*100);
+
+return `
+
+<div class="item">
+
+<b>${name}</b>
+
+<br>
+
+${p}点 / 100点
+
+</div>
+
+`;
+
+}).join("");
+
+
+const top5=document.getElementById("top5");
+
+
+top5.innerHTML=
+
+priorities.map((x,n)=>{
+
+const info=todoInfo(x.q.cat,x.q.q);
+
+return `
+
+<div class="todo">
+
+<div class="todoTop">
+
+${n+1}位　${info.title}
+
+</div>
+
+<div class="cost">
+
+費用目安：${info.cost}
+
+</div>
+
+<div class="when">
+
+まずやること：${info.action}
+
+</div>
+
+<div class="why">
+
+${info.reason}
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+
+const actionTexts=
+priorities
+.slice(0,3)
+.map(x=>actionFor(x.q.cat));
+
+
+document.getElementById("actions").innerHTML=
+
+[...new Set(actionTexts)]
+.slice(0,3)
+.map(x=>`<div class="item">□ ${x}</div>`)
+.join("");
+
+
+window.scrollTo(0,0);
+
+}
+
+
+function todoInfo(cat,question){
+
+const map={
+
+
+"家具・家電":{
+
+title:"家具・家電の転倒対策を確認する",
+
+cost:"0～5,000円程度／箇所",
+
+action:"寝室・避難経路周辺の家具を3つ確認",
+
+reason:
+"まず配置を見直し、必要に応じて転倒防止器具などを検討しましょう。"
+
+},
+
+
+"避難・照明":{
+
+title:"避難経路と停電時の照明を確認する",
+
+cost:"0～10,000円程度",
+
+action:"玄関・廊下から外までの経路を確認",
+
+reason:
+"障害物をなくし、懐中電灯・ランタンをすぐ取り出せる場所に置きましょう。"
+
+},
+
+
+"停電":{
+
+title:"停電時の明かり・充電手段を整える",
+
+cost:"1,000～20,000円程度",
+
+action:"懐中電灯とスマホの充電手段を確認",
+
+reason:
+"照明、スマホ、情報収集など、停電直後に必要な電源を優先しましょう。"
+
+},
+
+
+"電気安全":{
+
+title:"コンセント・電源タップ・分電盤を確認する",
+
+cost:"0～5,000円程度",
+
+action:"焦げ・変色・破損・コードの傷みを目視確認",
+
+reason:
+"異常がある場合は無理に使わず、必要に応じて専門家へ相談してください。"
+
+},
+
+
+"備蓄":{
+
+title:"水・非常用トイレを確認する",
+
+cost:"3,000～10,000円程度",
+
+action:"家族人数に対して不足しているものを書き出す",
+
+reason:
+"断水時に困りやすい飲料水とトイレを優先して確認しましょう。"
+
+},
+
+
+"家族":{
+
+title:"家族の連絡方法・集合場所を決める",
+
+cost:"0～3,000円程度",
+
+action:"連絡方法と集合場所を家族で確認",
+
+reason:
+"通信が不安定な場合も想定し、複数の連絡方法を決めておきましょう。"
+
+}
+
+};
+
+
+return map[cat] || {
+
+title:question,
+
+cost:"0～5,000円程度",
+
+action:"まず現状を確認する",
+
+reason:
+"必要な対策を確認し、無理のない範囲で改善しましょう。"
+
+};
+
+}
+
+
+function actionFor(cat){
+
+const map={
+
+"家具・家電":
+"寝室・リビングの家具と大型家電を確認し、転倒・移動対策が必要なものを3つ書き出す",
+
+"避難・照明":
+"懐中電灯・ランタンの場所を確認し、夜間でも取り出せる状態にする",
+
+"停電":
+"スマートフォンの充電手段と停電時に必要な電源を確認する",
+
+"電気安全":
+"分電盤・コンセント・電源タップを目視で確認し、異常があれば使用を止めて専門家へ相談する",
+
+"備蓄":
+"水・非常用トイレなど、家族人数に応じた備蓄を確認する",
+
+"家族":
+"家族で災害時の連絡方法と集合場所を確認する"
+
+};
+
+return map[cat];
 
 }
 
